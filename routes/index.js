@@ -1,10 +1,8 @@
 const express = require('express');
+const { countDocuments } = require('../controllers/index-controller');
 
 const router = express.Router();
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', countDocuments);
 
 module.exports = router;
