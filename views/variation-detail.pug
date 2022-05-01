@@ -1,0 +1,13 @@
+extends layout 
+
+block content 
+  h2= variation.name
+  h3= variation.moves 
+  h4 Opening:  
+    a(href=opening.url) #{opening.name}
+  div 
+    strong Description: 
+    p= variation.description
+  div
+    if variation.origin
+      p Origin: #{variation.origin}

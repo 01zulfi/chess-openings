@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h2= title
+  div 
+    ul 
+    each variation in variations
+      li 
+        a(href=variation.url) #{variation.name}
+        if variation.opening
+          p Opening: 
+            a(href=variation.opening.url) #{variation.opening.name}
