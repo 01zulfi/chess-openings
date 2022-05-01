@@ -1,0 +1,19 @@
+extends layout 
+
+block content 
+  h2= opening.name
+  h3= opening.moves
+  div  
+    strong Description: 
+    p= opening.description
+  div
+    if opening.origin
+      p Origin: #{opening.origin}
+  div 
+    if hasVariations
+      ul 
+      each variation in opening.variations
+        li 
+          a(href=variation.url) #{variation.name}
+    else 
+      p #{opening.name} has no variations.

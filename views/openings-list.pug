@@ -1,0 +1,10 @@
+extends layout 
+
+block content   
+  h2= title
+  section 
+    ul
+    each opening in openings 
+      li 
+        a(href=opening.url)= opening.name
+        p Variations: #{opening.variations.length}
