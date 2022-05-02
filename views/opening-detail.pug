@@ -18,3 +18,5 @@ block content
           a(href=variation.url) #{variation.name}
     else 
       p #{opening.name} has no variations.
+  hr
+  a(href=`${opening.url}/delete`) Delete Opening: #{opening.name}

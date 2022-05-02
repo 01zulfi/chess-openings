@@ -1,0 +1,19 @@
+extends layout 
+
+block content  
+  if hasVariations  
+    h2 Can't delete 
+     a(href=opening.url)  #{opening.name}
+    h3 Delete the following variations before attempting to delete #{opening.name}:
+    div 
+      ul
+       each variation in opening.variations
+        li 
+          a(href=variation.url) #{variation.name}
+  else 
+    h2 Are you sure you want to delete 
+     a(href=opening.url) #{opening.name}?
+    form(action="", method="post") 
+      input(type="hidden", name="openingId" required value=opening._id)
+      button(type="submit") Delete #{opening.name}
+      
