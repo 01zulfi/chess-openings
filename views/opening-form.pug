@@ -14,7 +14,7 @@ block content
       textarea(name="description", cols="30", rows="10" id="opening-description" placeholder="Enter opening description here..." ) #{opening ? opening.description : ''}
     div 
       label(for="opening-origin") Origin:
-      input(type="text" id="opening-origin" name="origin" placeholder="Enter opening description here..." value=(opening ? opening.origin : ''))
+      input(type="text" id="opening-origin" name="origin" placeholder="Enter opening origin here..." value=(opening ? opening.origin : ''))
     div 
       label(for="opening-chessurl") Chess.com URL:
       input(type="text" id='opening-chesscurl' name="chessDotComUrl" placeholder="Add opening's chess.com page url here..." value=(opening ? opening.chessDotComUrl : ''))
