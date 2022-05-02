@@ -1,0 +1,39 @@
+extends layout 
+
+block content
+  h2= title
+  if openings
+    form(action="", method="POST") 
+      div 
+        label(for='opening-name') Opening:
+        select(type='select' placeholder='Select opening' name='opening' required)
+          for opening in openings
+            if variation
+              option(
+                value=opening._id
+                selected=opening._id.toString()===variation.opening.toString()
+              ) #{opening.name}
+            else
+              option(value=opening._id) #{opening.name}
+      div 
+        label(for="variation-name") Name: (required)
+        input(type="text" id="variation-name" name="name" required placeholder="Enter variation name here..." value=(variation ? variation.name : ''))
+      div 
+        label(for="variation-moves") Moves: (required)
+        input(type="text" id="variation-moves" name="moves" required placeholder="Enter variation moves here..." value=(variation ? variation.moves : ''))
+      div 
+        label(for="variation-description") Description:
+        textarea(name="description", cols="30", rows="10" id="variation-description" placeholder="Enter variation description here..." ) #{variation ? variation.description : ''}
+      div 
+        label(for="variation-origin") Origin:
+        input(type="text" id="variation-origin" name="origin" placeholder="Enter variation origin here..." value=(variation ? variation.origin : ''))
+      div 
+        if errors
+          each error in errors
+            p= error.msg
+      button(type="submit") #{update ? `Update ${variation.name}`: "Add Variation"} 
+  else 
+    div  
+      h3 There is no chess opening in our inventory. Can not add a variation without an opening.
+      h4 
+        a(href="/openings/add") Add an opening 
