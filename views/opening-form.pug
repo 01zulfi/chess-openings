@@ -1,0 +1,25 @@
+extends layout 
+
+block content 
+  h2= title
+  form(action="", method="post") 
+    div 
+      label(for="opening-name") Name: (required)
+      input(type="text" id="opening-name" name="name" required placeholder="Enter opening name here..." value=(opening ? opening.name : ''))
+    div 
+      label(for="opening-moves") Moves: (required)
+      input(type="text" id="opening-moves" name="moves" required placeholder="Enter opening moves here..." value=(opening ? opening.moves : ''))
+    div 
+      label(for="opening-description") Description:
+      textarea(name="description", cols="30", rows="10" id="opening-description" placeholder="Enter opening description here..." ) #{opening ? opening.description : ''}
+    div 
+      label(for="opening-origin") Origin:
+      input(type="text" id="opening-origin" name="origin" placeholder="Enter opening description here..." value=(opening ? opening.origin : ''))
+    div 
+      label(for="opening-chessurl") Chess.com URL:
+      input(type="text" id='opening-chesscurl' name="chessDotComUrl" placeholder="Add opening's chess.com page url here..." value=(opening ? opening.chessDotComUrl : ''))
+    div 
+      if errors
+        each error in errors
+         p= error.msg
+    button(type="submit") Add Opening
