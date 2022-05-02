@@ -70,3 +70,35 @@ exports.openingCreatePost = [
     });
   },
 ];
+
+exports.openingDeleteGet = (req, res, next) => {
+  Opening.findById(req.params.id)
+    .populate('variations')
+    .exec((err, result) => {
+      if (err) return next(err);
+      return res.render('opening-delete', {
+        title: `Delete Opening: ${result.name}`,
+        opening: result,
+        hasVariations: result.variations.length > 0,
+      });
+    });
+};
+
+exports.openingDeletePost = (req, res, next) => {
+  Opening.findById(req.params.id)
+    .populate('variations')
+    .exec((err, result) => {
+      if (err) return next(err);
+      if (result.variations.length > 0) {
+        return res.render('opening-delete', {
+          title: `Delete Opening: ${result.name}`,
+          opening: result,
+          hasVariations: result.variations.length > 0,
+        });
+      }
+      return Opening.findByIdAndRemove(req.body.openingId, (error) => {
+        if (error) return next(error);
+        return res.redirect('/openings');
+      });
+    });
+};
