@@ -120,3 +120,90 @@ exports.variationDeletePost = (req, res, next) => {
     );
   });
 };
+
+exports.variationUpdateGet = (req, res, next) => {
+  Variation.findById(req.params.id).exec((err, result) => {
+    if (err) return next(err);
+    return Opening.find({}).exec((error, openings) => {
+      if (error) return next(error);
+      return res.render('variation-form', {
+        title: `Update Variation: ${result.name}`,
+        variation: result,
+        openings,
+        update: true,
+      });
+    });
+  });
+};
+
+exports.variationUpdatePost = [
+  /* eslint-disable newline-per-chained-call */
+  body('name', 'Name must not be empty.').trim().notEmpty().escape().unescape(),
+  body('opening', 'Opening must not be empty.')
+    .trim()
+    .notEmpty()
+    .escape()
+    .unescape(),
+  body('moves', 'Moves must not be empty.')
+    .trim()
+    .notEmpty()
+    .escape()
+    .unescape(),
+  body('description').trim().escape().unescape(),
+  body('origin').trim().escape().unescape(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    const variation = new Variation({
+      name: req.body.name,
+      opening: req.body.opening,
+      moves: req.body.moves,
+      description: req.body.description,
+      origin: req.body.origin,
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      return Opening.find({}).exec((err, result) => {
+        if (err) return next(err);
+        return res.render('variation-form', {
+          title: 'Add a Variation',
+          openings: result,
+          variation,
+          errors: errors.array(),
+        });
+      });
+    }
+
+    Variation.findById(req.params.id).exec((err, result) => {
+      if (err) return next(err);
+      return Opening.findByIdAndUpdate(
+        result.opening,
+        {
+          $pull: { variations: result._id },
+        },
+        {},
+        () => {},
+      );
+    });
+
+    return Variation.findByIdAndUpdate(
+      req.params.id,
+      variation,
+      {},
+      (err, result) => {
+        if (err) return next(err);
+        return Opening.findByIdAndUpdate(
+          variation.opening,
+          {
+            $push: { variations: variation._id },
+          },
+          {},
+          (error) => {
+            if (error) return next(error);
+            return res.redirect(result.url);
+          },
+        );
+      },
+    );
+  },
+];
