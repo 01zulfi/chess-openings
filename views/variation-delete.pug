@@ -1,0 +1,9 @@
+extends layout 
+
+block content  
+    h2 Are you sure you want to delete 
+     a(href=variation.url) #{variation.name}?
+    form(action="", method="post") 
+      input(type="hidden", name="variationId" required value=variation._id)
+      button(type="submit") Delete #{variation.name}
+      
