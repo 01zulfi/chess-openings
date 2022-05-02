@@ -92,3 +92,31 @@ exports.variationAddPost = [
     });
   },
 ];
+
+exports.variationDeleteGet = (req, res, next) => {
+  Variation.findById(req.params.id).exec((err, result) => {
+    if (err) return next(err);
+    return res.render('variation-delete', {
+      title: `Delete Variation: ${result.name}`,
+      variation: result,
+    });
+  });
+};
+
+exports.variationDeletePost = (req, res, next) => {
+  Variation.findById(req.params.id).exec((err, result) => {
+    if (err) return next(err);
+    return Opening.findByIdAndUpdate(
+      result.opening,
+      { $pull: { variations: result._id } },
+      {},
+      (er) => {
+        if (er) return next(er);
+        return Variation.findByIdAndRemove(req.body.variationId, (error) => {
+          if (error) return next(error);
+          return res.redirect('/variations');
+        });
+      },
+    );
+  });
+};

@@ -4,6 +4,8 @@ const {
   variationDetail,
   variationAddGet,
   variationAddPost,
+  variationDeleteGet,
+  variationDeletePost,
 } = require('../controllers/variations-controller');
 
 const router = express.Router();
@@ -11,6 +13,8 @@ const router = express.Router();
 router.get('/', variationsList);
 router.get('/add', variationAddGet);
 router.post('/add', variationAddPost);
+router.get('/:id/delete', variationDeleteGet);
+router.post('/:id/delete', variationDeletePost);
 router.get('/:id', variationDetail);
 
 module.exports = router;
