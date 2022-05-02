@@ -25,13 +25,13 @@ exports.openingDetail = (req, res, next) => {
     });
 };
 
-exports.openingCreateGet = (req, res, next) => {
+exports.openingAddGet = (req, res, next) => {
   res.render('opening-form', {
     title: 'Add an Opening',
   });
 };
 
-exports.openingCreatePost = [
+exports.openingAddPost = [
   /* eslint-disable newline-per-chained-call */
   body('name', 'Name must not be empty.').trim().notEmpty().escape().unescape(),
   body('moves', 'Moves must not be empty.')

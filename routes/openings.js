@@ -2,8 +2,8 @@ const express = require('express');
 const {
   openingsList,
   openingDetail,
-  openingCreateGet,
-  openingCreatePost,
+  openingAddGet,
+  openingAddPost,
   openingDeleteGet,
   openingDeletePost,
   openingUpdateGet,
@@ -13,8 +13,8 @@ const {
 const router = express.Router();
 
 router.get('/', openingsList);
-router.get('/create', openingCreateGet);
-router.post('/create', openingCreatePost);
+router.get('/add', openingAddGet);
+router.post('/add', openingAddPost);
 router.get('/:id/delete', openingDeleteGet);
 router.post('/:id/delete', openingDeletePost);
 router.get('/:id/update', openingUpdateGet);
