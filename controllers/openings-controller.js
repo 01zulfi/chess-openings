@@ -102,3 +102,58 @@ exports.openingDeletePost = (req, res, next) => {
       });
     });
 };
+
+exports.openingUpdateGet = (req, res, next) => {
+  Opening.findById(req.params.id).exec((err, result) => {
+    if (err) return next(err);
+    return res.render('opening-form', {
+      title: `Update Opening: ${result.name}`,
+      opening: result,
+      update: true,
+    });
+  });
+};
+
+exports.openingUpdatePost = [
+  /* eslint-disable newline-per-chained-call */
+  body('name', 'Name must not be empty.').trim().notEmpty(),
+  body('moves', 'Moves must not be empty.')
+    .trim()
+    .notEmpty()
+    .escape()
+    .unescape(),
+  body('description').trim().escape().unescape(),
+  body('origin').trim().escape().unescape(),
+  body('chessDotComUrl').trim().escape().unescape(),
+  (req, res, next) => {
+    console.log('hello');
+    const errors = validationResult(req);
+    const opening = new Opening({
+      name: req.body.name,
+      moves: req.body.moves,
+      description: req.body.description,
+      origin: req.body.origin,
+      chessDotComUrl: req.body.chessDotComUrl,
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      return res.render('opening-form', {
+        title: `Update Opening: ${opening.name}`,
+        opening,
+        errors: errors.array(),
+      });
+    }
+
+    return Opening.findByIdAndUpdate(
+      req.params.id,
+      opening,
+      {},
+      (err, result) => {
+        console.log('hello');
+        if (err) return next(err);
+        return res.redirect(result.url);
+      },
+    );
+  },
+];
