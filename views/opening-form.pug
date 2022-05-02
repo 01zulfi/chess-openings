@@ -2,7 +2,7 @@ extends layout
 
 block content 
   h2= title
-  form(action="", method="post") 
+  form(action="", method="POST") 
     div 
       label(for="opening-name") Name: (required)
       input(type="text" id="opening-name" name="name" required placeholder="Enter opening name here..." value=(opening ? opening.name : ''))
@@ -22,4 +22,4 @@ block content
       if errors
         each error in errors
          p= error.msg
-    button(type="submit") Add Opening
+    button(type="submit") #{update ? `Update ${opening.name}`: "Add Opening"} 
