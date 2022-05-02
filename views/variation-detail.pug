@@ -12,4 +12,6 @@ block content
     if variation.origin
       p Origin: #{variation.origin}
   hr
+  a(href=`${variation.url}/update`) Update #{variation.name}
+  hr
   a(href=`${variation.url}/delete`) Delete #{variation.name}
