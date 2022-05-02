@@ -41,7 +41,7 @@ exports.openingCreatePost = [
     .unescape(),
   body('description').trim().escape().unescape(),
   body('origin').trim().escape().unescape(),
-  body('chessDotComUrl').trim().escape().unescape,
+  body('chessDotComUrl').trim().escape().unescape(),
   (req, res, next) => {
     const errors = validationResult(req);
     const opening = new Opening({
