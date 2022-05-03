@@ -426,7 +426,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 html {
-  font-family: 'Rubiks', sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
 *, ::before, ::after{
@@ -489,14 +489,51 @@ html {
           text-decoration-line: none;
 }
 
-.my-2{
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+.button-primary{
+  border-radius: 0.25rem;
+  border-width: 1px;
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 208 83 / var(--tw-bg-opacity));
+  padding: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity));
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-shadow-color: rgb(127, 166, 80);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.button-primary:hover{
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.m-2{
+  margin: 0.5rem;
 }
 
 .my-5{
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
+}
+
+.mx-2{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.my-3{
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.my-2{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mb-3{
@@ -511,6 +548,14 @@ html {
   margin-bottom: 0.5rem;
 }
 
+.mb-4{
+  margin-bottom: 1rem;
+}
+
+.mt-3{
+  margin-top: 0.75rem;
+}
+
 .block{
   display: block;
 }
@@ -523,10 +568,18 @@ html {
   display: none;
 }
 
+.w-full{
+  width: 100%;
+}
+
 .w-fit{
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+.list-none{
+  list-style-type: none;
 }
 
 .flex-col{
@@ -545,8 +598,33 @@ html {
   justify-content: space-around;
 }
 
+.gap-2{
+  gap: 0.5rem;
+}
+
 .rounded{
   border-radius: 0.25rem;
+}
+
+.border{
+  border-width: 1px;
+}
+
+.border-2{
+  border-width: 2px;
+}
+
+.border-4{
+  border-width: 4px;
+}
+
+.border-l-4{
+  border-left-width: 4px;
+}
+
+.border-l-chess-green{
+  --tw-border-opacity: 1;
+  border-left-color: rgb(127 166 80 / var(--tw-border-opacity));
 }
 
 .bg-chess-green{
@@ -581,6 +659,26 @@ html {
   line-height: 2.5rem;
 }
 
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-xs{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-base{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-sm{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .font-semibold{
   font-weight: 600;
 }
@@ -597,6 +695,14 @@ html {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.opacity-80{
+  opacity: 0.8;
+}
+
+.opacity-75{
+  opacity: 0.75;
 }
 
 .shadow{

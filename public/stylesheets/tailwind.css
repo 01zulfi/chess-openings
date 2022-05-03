@@ -6,12 +6,15 @@
 
 @layer base {
   html {
-    font-family: 'Rubiks', sans-serif;
+    font-family: 'Rubik', sans-serif;
   }
 }
 
 @layer components {
   .link {
     @apply underline text-gray-700 hover:text-gray-900 hover:no-underline font-bold;
+  }
+  .button-primary {
+    @apply bg-button-yellow rounded  shadow-md shadow-chess-green p-2 hover:border-black border border-transparent text-gray-800 hover:text-gray-900;
   }
 }

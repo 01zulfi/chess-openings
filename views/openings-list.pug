@@ -1,12 +1,13 @@
 extends layout 
 
 block content   
-  h2= title
-  h3 
-    a(href="/openings/add") Add an Opening
-  section 
-    ul
-    each opening in openings 
-      li 
-        a(href=opening.url)= opening.name
-        p Variations: #{opening.variations.length}
+  section(class="flex flex-col gap-2 mx-2 mb-4")
+    h3(class="text-3xl text-chess-green font-semibold") Openings
+    hr(class="my-3")
+    a(href="/openings/add" class="button-primary w-fit") Add an Opening
+    section(class="w-full")
+      ul(class="list-none")
+       each opening in openings 
+        li(class="my-3 p-5 rounded border-l-chess-green border-l-4 shadow-md flex flex-col")
+          a(href=opening.url class="link")= opening.name
+          p Variations: #{opening.variations.length}

@@ -1,14 +1,15 @@
 extends layout
 
 block content
-  h2= title
-  h3 
-    a(href="/variations/add") Add a Variation
-  div 
-    ul 
-    each variation in variations
-      li 
-        a(href=variation.url) #{variation.name}
-        if variation.opening
-          p Opening: 
-            a(href=variation.opening.url) #{variation.opening.name}
+  section(class="flex flex-col gap-2 mx-2 mb-4")
+    h3(class="text-3xl text-chess-green font-semibold") Variations
+    hr(class="my-3")
+    a(href="/variations/add" class="button-primary w-fit") Add a Variation
+    section(class="w-full")
+      ul(class="list-none")
+       each variation in variations
+        li(class="my-3 p-5 border-l-chess-green border-l-4 rounded shadow-md flex flex-col")
+          a(href=variation.url class="link") #{variation.name}
+          if variation.opening
+            p(class="opacity-75 text-sm mt-3") Opening: 
+              a(href=variation.opening.url class="link") #{variation.opening.name}
