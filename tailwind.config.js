@@ -1,7 +1,11 @@
 module.exports = {
-  content: [],
+  content: ['./views/*.pug'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'chess-green': 'rgb(127, 166, 80)',
+      },
+    },
   },
   plugins: [],
-}
+};
