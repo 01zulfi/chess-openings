@@ -5,6 +5,7 @@ require('../models/variation');
 exports.openingsList = (req, res, next) => {
   Opening.find({}, 'name variations url').exec((err, result) => {
     if (err) return next(err);
+    if (!result) return res.render('404');
     return res.render('openings-list', {
       title: 'Openings List',
       openings: result,
@@ -17,6 +18,7 @@ exports.openingDetail = (req, res, next) => {
     .populate('variations')
     .exec((err, result) => {
       if (err) return next(err);
+      if (!result) return res.render('404');
       return res.render('opening-detail', {
         title: `${result.name} | Openings`,
         opening: result,
@@ -76,6 +78,7 @@ exports.openingDeleteGet = (req, res, next) => {
     .populate('variations')
     .exec((err, result) => {
       if (err) return next(err);
+      if (!result) return res.render('404');
       return res.render('opening-delete', {
         title: `Delete Opening: ${result.name}`,
         opening: result,
@@ -106,6 +109,7 @@ exports.openingDeletePost = (req, res, next) => {
 exports.openingUpdateGet = (req, res, next) => {
   Opening.findById(req.params.id).exec((err, result) => {
     if (err) return next(err);
+    if (!result) return res.render('404');
     return res.render('opening-form', {
       title: `Update Opening: ${result.name}`,
       opening: result,

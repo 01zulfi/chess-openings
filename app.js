@@ -32,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/openings', openingsRouter);
 app.use('/variations', variationsRouter);
+app.use((req, res, next) => res.render('404'));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

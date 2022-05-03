@@ -19,6 +19,7 @@ exports.variationDetail = (req, res, next) => {
     .populate('opening')
     .exec((err, result) => {
       if (err) return next(err);
+      if (!result) return res.render('404');
       return res.render('variation-detail', {
         title: `${result.name} | Variations`,
         variation: result,
@@ -96,6 +97,7 @@ exports.variationAddPost = [
 exports.variationDeleteGet = (req, res, next) => {
   Variation.findById(req.params.id).exec((err, result) => {
     if (err) return next(err);
+    if (!result) return res.render('404');
     return res.render('variation-delete', {
       title: `Delete Variation: ${result.name}`,
       variation: result,
@@ -124,6 +126,7 @@ exports.variationDeletePost = (req, res, next) => {
 exports.variationUpdateGet = (req, res, next) => {
   Variation.findById(req.params.id).exec((err, result) => {
     if (err) return next(err);
+    if (!result) return res.render('404');
     return Opening.find({}).exec((error, openings) => {
       if (error) return next(error);
       return res.render('variation-form', {
