@@ -1,8 +1,12 @@
 extends layout
 
 block content
-  div 
-    p
-      a(href="/openings") Openings: #{openingsCount}
-    p
-      a(href="/variations") Variations: #{variationsCount}
+  div(class="my-2 p-5 rounded shadow shadow-chess-green flex flex-col")
+    h3(class="text-2xl font-semibold text-chess-green") Our inventory is incomplete, help us add more!
+    hr(class="my-5")
+    p(class="mb-3") Currently, we have:
+    div(class="px-5")
+      p
+        a(href="/openings" class="link") Openings: #{openingsCount}
+      p
+        a(href="/variations" class="link") Variations: #{variationsCount}
