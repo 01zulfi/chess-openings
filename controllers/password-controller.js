@@ -1,7 +1,9 @@
 const { body } = require('express-validator');
 const Password = require('../utils/password-manager');
 
-exports.passwordGet = (req, res, next) => res.render('password');
+exports.passwordGet = (req, res, next) =>
+  /* eslint-disable implicit-arrow-linebreak */
+  res.render('password', { title: 'Enter Password' });
 
 exports.passwordPost = [
   body('password').trim().escape(),
@@ -14,6 +16,7 @@ exports.passwordPost = [
     Password.setVerified(false);
     return res.render('password', {
       message: 'Wrong password',
+      title: 'Enter Password',
     });
   },
 ];
