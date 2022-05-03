@@ -10,6 +10,7 @@
     "parserOptions": {
         "ecmaVersion": "latest"
     },
+    "ignorePatterns": ["postcss.config.js", "tailwind.config.js"],
     "rules": {
         "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
         "no-console": "off",
