@@ -1,6 +1,7 @@
 const { body, validationResult } = require('express-validator');
 const Variation = require('../models/variation');
 const Opening = require('../models/opening');
+const Password = require('../utils/password-manager');
 
 exports.variationsList = (req, res, next) => {
   Variation.find({})
@@ -98,10 +99,15 @@ exports.variationDeleteGet = (req, res, next) => {
   Variation.findById(req.params.id).exec((err, result) => {
     if (err) return next(err);
     if (!result) return res.render('404');
-    return res.render('variation-delete', {
-      title: `Delete Variation: ${result.name}`,
-      variation: result,
-    });
+    if (Password.isVerified()) {
+      Password.reset();
+      return res.render('variation-delete', {
+        title: `Delete Variation: ${result.name}`,
+        variation: result,
+      });
+    }
+    Password.setRedirectPath(`/variations/${req.params.id}/delete`);
+    return res.redirect('/password');
   });
 };
 
@@ -127,15 +133,20 @@ exports.variationUpdateGet = (req, res, next) => {
   Variation.findById(req.params.id).exec((err, result) => {
     if (err) return next(err);
     if (!result) return res.render('404');
-    return Opening.find({}).exec((error, openings) => {
-      if (error) return next(error);
-      return res.render('variation-form', {
-        title: `Update Variation: ${result.name}`,
-        variation: result,
-        openings,
-        update: true,
+    if (Password.isVerified()) {
+      Password.reset();
+      return Opening.find({}).exec((error, openings) => {
+        if (error) return next(error);
+        return res.render('variation-form', {
+          title: `Update Variation: ${result.name}`,
+          variation: result,
+          openings,
+          update: true,
+        });
       });
-    });
+    }
+    Password.setRedirectPath(`variations/${req.params.id}/update`);
+    return res.redirect('/password');
   });
 };
 

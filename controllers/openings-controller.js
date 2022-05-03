@@ -1,5 +1,6 @@
 const { body, validationResult } = require('express-validator');
 const Opening = require('../models/opening');
+const Password = require('../utils/password-manager');
 require('../models/variation');
 
 exports.openingsList = (req, res, next) => {
@@ -79,11 +80,16 @@ exports.openingDeleteGet = (req, res, next) => {
     .exec((err, result) => {
       if (err) return next(err);
       if (!result) return res.render('404');
-      return res.render('opening-delete', {
-        title: `Delete Opening: ${result.name}`,
-        opening: result,
-        hasVariations: result.variations.length > 0,
-      });
+      if (Password.isVerified()) {
+        Password.reset();
+        return res.render('opening-delete', {
+          title: `Delete Opening: ${result.name}`,
+          opening: result,
+          hasVariations: result.variations.length > 0,
+        });
+      }
+      Password.setRedirectPath(`/openings/${req.params.id}/delete`);
+      return res.redirect('/password');
     });
 };
 
@@ -110,11 +116,16 @@ exports.openingUpdateGet = (req, res, next) => {
   Opening.findById(req.params.id).exec((err, result) => {
     if (err) return next(err);
     if (!result) return res.render('404');
-    return res.render('opening-form', {
-      title: `Update Opening: ${result.name}`,
-      opening: result,
-      update: true,
-    });
+    if (Password.isVerified()) {
+      Password.reset();
+      return res.render('opening-form', {
+        title: `Update Opening: ${result.name}`,
+        opening: result,
+        update: true,
+      });
+    }
+    Password.setRedirectPath(`/openings/${req.params.id}/update`);
+    return res.redirect('/password');
   });
 };
 
