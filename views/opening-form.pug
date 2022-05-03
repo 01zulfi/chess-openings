@@ -1,25 +1,27 @@
 extends layout 
 
 block content 
-  h2= title
-  form(action="", method="POST") 
-    div 
-      label(for="opening-name") Name: (required)
-      input(type="text" id="opening-name" name="name" required placeholder="Enter opening name here..." value=(opening ? opening.name : ''))
-    div 
-      label(for="opening-moves") Moves: (required)
-      input(type="text" id="opening-moves" name="moves" required placeholder="Enter opening moves here..." value=(opening ? opening.moves : ''))
-    div 
-      label(for="opening-description") Description:
-      textarea(name="description", cols="30", rows="10" id="opening-description" placeholder="Enter opening description here..." ) #{opening ? opening.description : ''}
-    div 
-      label(for="opening-origin") Origin:
-      input(type="text" id="opening-origin" name="origin" placeholder="Enter opening origin here..." value=(opening ? opening.origin : ''))
-    div 
-      label(for="opening-chessurl") Chess.com URL:
-      input(type="text" id='opening-chesscurl' name="chessDotComUrl" placeholder="Add opening's chess.com page url here..." value=(opening ? opening.chessDotComUrl : ''))
-    div 
-      if errors
-        each error in errors
-         p= error.msg
-    button(type="submit") #{update ? `Update ${opening.name}`: "Add Opening"} 
+  section(class="mx-2 my-4")
+    h3(class="text-3xl text-chess-green font-semibold")= title
+    hr(class="my-3")
+    form(action="", method="POST" class="flex flex-col gap-4 items-start") 
+      div(class="label-input") 
+        label(class="self-start" for="opening-name") Name: (required)
+        input(class="input" type="text" id="opening-name" name="name" required placeholder="Enter opening name here..." value=(opening ? opening.name : ''))
+      div(class="label-input") 
+        label(class="self-start" for="opening-moves") Moves: (required)
+        input(class="input" type="text" id="opening-moves" name="moves" required placeholder="Enter opening moves here..." value=(opening ? opening.moves : ''))
+      div(class="label-input") 
+        label(class="self-start" for="opening-description") Description:
+        textarea(class="input" name="description", cols="25", rows="5" id="opening-description" placeholder="Enter opening description here..." ) #{opening ? opening.description : ''}
+      div(class="label-input") 
+        label(class="self-start" for="opening-origin") Origin:
+        input(class="input" type="text" id="opening-origin" name="origin" placeholder="Enter opening origin here..." value=(opening ? opening.origin : ''))
+      div(class="label-input") 
+        label(class="self-start" for="opening-chessurl") Chess.com URL:
+        input(class="input" type="text" id='opening-chesscurl' name="chessDotComUrl" placeholder="Add opening's chess.com page url here..." value=(opening ? opening.chessDotComUrl : ''))
+      div 
+        if errors
+          each error in errors
+            p(class="border border-red-500 p-2 rounded my-2")= error.msg
+      button(type="submit" class="button-green mb-10") #{update ? `Update ${opening.name}`: "Add Opening"} 

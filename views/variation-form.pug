@@ -1,39 +1,41 @@
 extends layout 
 
 block content
-  h2= title
-  if openings
-    form(action="", method="POST") 
-      div 
-        label(for='opening-name') Opening:
-        select(type='select' placeholder='Select opening' name='opening' required)
-          for opening in openings
-            if variation
-              option(
-                value=opening._id
-                selected=opening._id.toString()===variation.opening.toString()
-              ) #{opening.name}
-            else
-              option(value=opening._id) #{opening.name}
-      div 
-        label(for="variation-name") Name: (required)
-        input(type="text" id="variation-name" name="name" required placeholder="Enter variation name here..." value=(variation ? variation.name : ''))
-      div 
-        label(for="variation-moves") Moves: (required)
-        input(type="text" id="variation-moves" name="moves" required placeholder="Enter variation moves here..." value=(variation ? variation.moves : ''))
-      div 
-        label(for="variation-description") Description:
-        textarea(name="description", cols="30", rows="10" id="variation-description" placeholder="Enter variation description here..." ) #{variation ? variation.description : ''}
-      div 
-        label(for="variation-origin") Origin:
-        input(type="text" id="variation-origin" name="origin" placeholder="Enter variation origin here..." value=(variation ? variation.origin : ''))
-      div 
-        if errors
-          each error in errors
-            p= error.msg
-      button(type="submit") #{update ? `Update ${variation.name}`: "Add Variation"} 
-  else 
-    div  
-      h3 There is no chess opening in our inventory. Can not add a variation without an opening.
-      h4 
-        a(href="/openings/add") Add an opening 
+  section(class="mx-2 my-4")
+    h3(class="text-3xl text-chess-green font-semibold")= title
+    hr(class="my-3")
+    if openings
+      form(action="", method="POST" class="flex flex-col gap-4 items-start") 
+        div(class="label-input") 
+          label(class="self-start" for='opening-name') Opening:
+          select(class="input" type='select' placeholder='Select opening' name='opening' required)
+            for opening in openings
+              if variation
+                option(
+                  value=opening._id
+                  selected=opening._id.toString()===variation.opening.toString()
+                ) #{opening.name}
+              else
+                option(value=opening._id) #{opening.name}
+        div(class="label-input") 
+          label(class="self-start" for="variation-name") Name: (required)
+          input(class="input" type="text" id="variation-name" name="name" required placeholder="Enter variation name here..." value=(variation ? variation.name : ''))
+        div(class="label-input") 
+          label(class="self-start" for="variation-moves") Moves: (required)
+          input(class="input" type="text" id="variation-moves" name="moves" required placeholder="Enter variation moves here..." value=(variation ? variation.moves : ''))
+        div(class="label-input") 
+          label(class="self-start" for="variation-description") Description:
+          textarea(class="input" name="description", cols="30", rows="10" id="variation-description" placeholder="Enter variation description here..." ) #{variation ? variation.description : ''}
+        div(class="label-input") 
+          label(class="self-start" for="variation-origin") Origin:
+          input(class="input" type="text" id="variation-origin" name="origin" placeholder="Enter variation origin here..." value=(variation ? variation.origin : ''))
+        div 
+          if errors
+            each error in errors
+             p(class="border border-red-500 p-2 rounded my-2")= error.msg
+        button(type="submit" class="button-green mb-10") #{update ? `Update ${variation.name}`: "Add Variation"} 
+    else 
+      div  
+        h4(class="text-base font-medium") There is no chess opening in our inventory. Can not add a variation without an opening.
+        h4 
+          a(href="/openings/add" class="button-green mb-10") Add an opening 

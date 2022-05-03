@@ -23,4 +23,13 @@
   .button-red {
     @apply bg-[#FC4262] rounded  shadow-md shadow-chess-green p-2 hover:border-black border border-transparent text-gray-800 hover:text-gray-900;
   }
+  .button-green {
+    @apply bg-[#50FF65] rounded  shadow-md shadow-chess-green p-2 hover:border-black border border-transparent text-gray-800 hover:text-gray-900;
+  }
+  .input {
+    @apply bg-gray-300 border border-gray-700 p-1 rounded required:border-gray-900;
+  }
+  .label-input {
+    @apply flex flex-col items-center justify-around;
+  }
 }
