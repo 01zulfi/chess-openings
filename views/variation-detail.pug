@@ -1,17 +1,23 @@
 extends layout 
 
 block content 
-  h2= variation.name
-  h3= variation.moves 
-  h4 Opening:  
-    a(href=opening.url) #{opening.name}
-  div 
-    strong Description: 
-    p= variation.description
-  div
-    if variation.origin
-      p Origin: #{variation.origin}
-  hr
-  a(href=`${variation.url}/update`) Update #{variation.name}
-  hr
-  a(href=`${variation.url}/delete`) Delete #{variation.name}
+  section(class="flex flex-col gap-2 mx-2 mb-8")
+    h3(class="text-3xl text-chess-green font-semibold")= variation.name 
+    h4(class="text-2xl p-2 border border-chess-green rounded bg-[#fafbf8]")= variation.moves
+    hr(class="my-3") 
+    h4(class="") Opening:  
+      a(href=opening.url class="link") #{opening.name}
+    div 
+      strong(class="underline") Description: 
+      p= variation.description
+    div
+      if variation.origin
+        strong(class="underline") Origin
+        p #{variation.origin}
+    hr
+    div(class="flex gap-2 text-center")
+      a(href=`${variation.url}/update` class="button-secondary w-fit") Update #{variation.name}
+      p
+      a(href=`${variation.url}/delete` class="button-red w-fit") Delete: #{variation.name}
+
+
