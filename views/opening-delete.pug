@@ -1,19 +1,22 @@
 extends layout 
 
 block content  
-  if hasVariations  
-    h2 Can't delete 
-     a(href=opening.url)  #{opening.name}
-    h3 Delete the following variations before attempting to delete #{opening.name}:
-    div 
-      ul
-       each variation in opening.variations
-        li 
-          a(href=variation.url) #{variation.name}
-  else 
-    h2 Are you sure you want to delete 
-     a(href=opening.url) #{opening.name}?
-    form(action="", method="post") 
-      input(type="hidden", name="openingId" required value=opening._id)
-      button(type="submit") Delete #{opening.name}
-      
+  section(class="mx-2 my-2")
+    if hasVariations  
+      h3(class="text-2xl") Can't delete 
+       a(href=opening.url class="link")  #{opening.name}
+      hr(class="my-3")
+      h4(class="text-base my-2") Delete the following variations before attempting to delete #{opening.name}:
+      div 
+        ul(class="list-none")
+          each variation in opening.variations
+           li(class="my-2 p-4 shadow-md") 
+            a(href=variation.url class="link") #{variation.name}
+    else 
+      h3(class="text-2xl") Are you sure you want to delete 
+        a(href=opening.url class="link") #{opening.name}?
+      hr(class="my-3")
+      form(action="", method="post") 
+        input(type="hidden", name="openingId" required value=opening._id)
+        button(type="submit" class="button-red") Delete #{opening.name}
+        

@@ -1,9 +1,11 @@
 extends layout 
 
 block content  
-    h2 Are you sure you want to delete 
-     a(href=variation.url) #{variation.name}?
-    form(action="", method="post") 
-      input(type="hidden", name="variationId" required value=variation._id)
-      button(type="submit") Delete #{variation.name}
-      
+    section(class="m-2")
+      h3(class='text-2xl') Are you sure you want to delete 
+       a(href=variation.url class="link") #{variation.name}?
+      hr(class="my-3")
+      form(action="", method="post") 
+        input(type="hidden", name="variationId" required value=variation._id)
+        button(type="submit" class="button-red") Delete #{variation.name}
+        
