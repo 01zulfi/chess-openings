@@ -8,7 +8,8 @@ block content
     div  
       strong(class="underline") Description: 
       p(class="mb-2")= opening.description
-      a(href=opening.chessDotComUrl class="text-chess-green underline hover:no-underline") More info on #{opening.name}'s chess.com page
+      if opening.chessDotComUrl
+        a(href=opening.chessDotComUrl class="text-chess-green underline hover:no-underline") More info on #{opening.name}'s chess.com page
     div
       if opening.origin
         strong(class="underline") Origin:
