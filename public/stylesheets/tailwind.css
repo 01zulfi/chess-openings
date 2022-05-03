@@ -18,7 +18,7 @@
     @apply bg-button-yellow rounded  shadow-md shadow-chess-green p-2 hover:border-black border border-transparent text-gray-800 hover:text-gray-900;
   }
   .button-secondary {
-    @apply bg-transparent rounded  shadow-md shadow-chess-green p-2 hover:border-black border border-transparent text-gray-800 hover:text-gray-900;
+    @apply bg-transparent rounded  shadow-md shadow-chess-green p-2 hover:border-black border border-transparent text-gray-800 hover:text-gray-900 hover:bg-button-yellow;
   }
   .button-red {
     @apply bg-[#FC4262] rounded  shadow-md shadow-chess-green p-2 hover:border-black border border-transparent text-gray-800 hover:text-gray-900;
