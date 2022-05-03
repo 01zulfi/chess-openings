@@ -1,24 +1,31 @@
 extends layout 
 
 block content 
-  h2= opening.name
-  h3= opening.moves
-  div  
-    strong Description: 
-    p= opening.description
-    a(href=opening.chessDotComUrl) More info on #{opening.name}'s chess.com page
-  div
-    if opening.origin
-      p Origin: #{opening.origin}
-  div 
-    if hasVariations
-      ul 
-      each variation in opening.variations
-        li 
-          a(href=variation.url) #{variation.name}
-    else 
-      p #{opening.name} has no variations.
-  hr
-  a(href=`${opening.url}/update`) Update Opening: #{opening.name}
-  hr
-  a(href=`${opening.url}/delete`) Delete Opening: #{opening.name}
+  section(class="flex flex-col gap-2 mx-2 mb-8")
+    h3(class="text-3xl text-chess-green font-semibold")= opening.name 
+    h4(class="text-2xl p-2 border border-chess-green rounded bg-[#fafbf8]")= opening.moves
+    hr(class="my-3")
+    div  
+      strong(class="underline") Description: 
+      p(class="mb-2")= opening.description
+      a(href=opening.chessDotComUrl class="text-chess-green underline hover:no-underline") More info on #{opening.name}'s chess.com page
+    div
+      if opening.origin
+        strong(class="underline") Origin:
+        p #{opening.origin}
+    div 
+      if hasVariations
+        strong(class="underline") Variations:
+        ul 
+        each variation in opening.variations
+          li(class="my-2") 
+            a(href=variation.url class="link") #{variation.name}
+      else 
+        strong(class="underline") Variations:
+        p #{opening.name} has no variations.
+    hr
+    div(class="flex gap-2 text-center")
+      a(href=`${opening.url}/update` class="button-secondary w-fit") Update #{opening.name}
+      p
+      a(href=`${opening.url}/delete` class="button-red w-fit") Delete: #{opening.name}
+
