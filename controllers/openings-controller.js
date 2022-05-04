@@ -143,26 +143,25 @@ exports.openingUpdatePost = [
   (req, res, next) => {
     console.log('hello');
     const errors = validationResult(req);
-    const opening = new Opening({
+    const openingDetail = {
       name: req.body.name,
       moves: req.body.moves,
       description: req.body.description,
       origin: req.body.origin,
       chessDotComUrl: req.body.chessDotComUrl,
-      _id: req.params.id,
-    });
+    };
 
     if (!errors.isEmpty()) {
       return res.render('opening-form', {
-        title: `Update Opening: ${opening.name}`,
-        opening,
+        title: `Update Opening: ${openingDetail.name}`,
+        opening: openingDetail,
         errors: errors.array(),
       });
     }
 
     return Opening.findByIdAndUpdate(
       req.params.id,
-      opening,
+      { ...openingDetail },
       {},
       (err, result) => {
         console.log('hello');
