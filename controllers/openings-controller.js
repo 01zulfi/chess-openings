@@ -141,7 +141,6 @@ exports.openingUpdatePost = [
   body('origin').trim().escape().unescape(),
   body('chessDotComUrl').trim().escape().unescape(),
   (req, res, next) => {
-    console.log('hello');
     const errors = validationResult(req);
     const openingDetail = {
       name: req.body.name,
@@ -164,7 +163,6 @@ exports.openingUpdatePost = [
       { ...openingDetail },
       {},
       (err, result) => {
-        console.log('hello');
         if (err) return next(err);
         return res.redirect(result.url);
       },
