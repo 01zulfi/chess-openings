@@ -14,6 +14,25 @@ Chess Openings is an inventory application that allows users to view and add new
   - Uses [Pug](https://pugjs.org/api/getting-started.html) as the templating engine
   - Styled via [Tailwind CSS](https://tailwindcss.com/)
 
+## Running Locally
+
+1. Clone the repo: 
+```
+git clone git@github.com:01zulfi/chess-openings.git
+```
+2. Copy .env.sample to .env and supply environment variables: 
+```bash
+cp .env.sample .env
+```
+3. Install dependencies:
+```
+npm install
+```
+4. Run:
+```
+npm run serverstart
+```
+
 ## Attributions
 
 - Data from [chess.com](https://www.chess.com)
