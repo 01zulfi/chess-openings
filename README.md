@@ -1,7 +1,7 @@
 # Chess Openings
 ## Inventory for chess openings and variations
 
-### [Live Preview Link](https://chess-openings-app.herokuapp.com/)
+### [Live Preview Link](https://chess-openings.cyclic.app/)
 
 ## About
 
